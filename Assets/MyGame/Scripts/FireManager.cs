@@ -51,7 +51,7 @@ public class NewBehaviourScript : MonoBehaviour
        if(Input.GetButton("Fire1"))
         {
             Vector3 pos = Input.mousePosition;
-            Debug.Log(pos)
+            Debug.Log(pos);
         }
     }
 }
