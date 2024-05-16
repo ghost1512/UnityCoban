@@ -52,8 +52,11 @@ public class PlayerController : MonoBehaviour
 
     private void DamageHealth(float health)
     {
-        currentHealth -= health;
-        if (currentHealth <= 0)
+        if (currentHealth > 0)
+        {
+            currentHealth -= health;
+        }
+        else
         {
             currentHealth = 0;
             Destroy(gameObject);
