@@ -1,23 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerContoller : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    //Public
+    // Public
     public float maxHealth = 100;
     public float speedMove = 20f;
     public float speedRotate = 100f;
     public float fuelValue = 20;
-    public float damdgeValue = 50;
-    public GameObject explustionPrefabs;
+    public float damageValue = 50;
+    public GameObject explosionPrefabs;
 
-    //Private
-    private float currenHealth = 0;
+    // Private
+    private float currentHealth;
+    private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-        currenHealth = maxHealth;
+        currentHealth = maxHealth;
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -28,34 +28,35 @@ public class PlayerContoller : MonoBehaviour
         transform.Translate(new Vector3(0, 0, vertical * speedMove * Time.deltaTime));
         transform.Rotate(new Vector3(0, horizontal * speedRotate * Time.deltaTime, 0));
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "fuel" )
+        if (other.CompareTag("fuel"))
         {
             Destroy(other.gameObject);
             GameManager.instance.SetFuel(fuelValue);
-            InstantiateGame(other);
+            InstantiateGame(other.gameObject);
         }
-        else if(other.tag == "damage")
+        else if (other.CompareTag("damege"))
         {
-            DamageHealth(damdgeValue);
-            InstantiateGame(other);
+            Destroy(other.gameObject);
+            DamageHealth(damageValue);
+            InstantiateGame(other.gameObject);
         }
     }
-    void InstantiateGame(other)
+
+    void InstantiateGame(GameObject other)
     {
-        Instantiate(explustionPrefabs, other.transform.position, Quaternion.identity);
+        Instantiate(explosionPrefabs, other.transform.position, Quaternion.identity);
     }
+
     private void DamageHealth(float health)
     {
-        if(currenHealth > 0)
+        currentHealth -= health;
+        if (currentHealth <= 0)
         {
-            currenHealth -= health;
-        }
-        else
-        {
-            currenHealth = 0;
+            currentHealth = 0;
             Destroy(gameObject);
         }
     }
-}   
+}
