@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,10 +10,11 @@ public class PlayerController : MonoBehaviour
     public float fuelValue = 20;
     public float damageValue = 50;
     public GameObject explosionPrefabs;
-
+    public int roundValue = 0;
     // Private
     private float currentHealth;
     private Rigidbody rb;
+    private bool isGate = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,17 +33,29 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("fuel"))
+        if (other.tag == "fuel")
         {
             Destroy(other.gameObject);
             GameManager.instance.SetFuel(fuelValue);
             InstantiateGame(other.gameObject);
         }
-        else if (other.CompareTag("damege"))
+        else if (other.tag == "damege")
         {
             Destroy(other.gameObject);
             DamageHealth(damageValue);
             InstantiateGame(other.gameObject);
+        }
+        else if (other.tag == "FinishGame")
+        {
+            if(isGate == true)
+            {
+                GameManager.instance.SetRound(roundValue);
+                isGate = false;
+            }
+        }
+       if (other.name == "Gate")
+        {
+            isGate = true;
         }
     }
 
