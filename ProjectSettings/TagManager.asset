@@ -8,6 +8,7 @@ TagManager:
   - damege
   - player
   - no
+  - coin
   layers:
   - Default
   - TransparentFX

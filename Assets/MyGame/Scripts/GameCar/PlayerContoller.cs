@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float damageValue = 50;
     public GameObject explosionPrefabs;
     public int roundValue = 0;
+    public int coinValue = 0;
     // Private
     private float currentHealth;
     private Rigidbody rb;
@@ -52,6 +53,13 @@ public class PlayerController : MonoBehaviour
                 GameManager.instance.SetRound(roundValue);
                 isGate = false;
             }
+        }
+        else if (other.tag == "coin")
+        {
+            InstantiateGame(other.gameObject);
+            GameManager.instance.SetCoin(coinValue);
+            Destroy(other.gameObject);
+            Debug.Log("Len cho tao");
         }
        if (other.name == "Gate")
         {
