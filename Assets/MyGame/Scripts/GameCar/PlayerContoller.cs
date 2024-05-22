@@ -56,10 +56,10 @@ public class PlayerController : MonoBehaviour
         }
         else if (other.tag == "coin")
         {
-            InstantiateGame(other.gameObject);
+  
             GameManager.instance.SetCoin(coinValue);
             Destroy(other.gameObject);
-            Debug.Log("Len cho tao");
+
         }
        if (other.name == "Gate")
         {

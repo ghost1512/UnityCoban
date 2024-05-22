@@ -5,19 +5,22 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    public TextMeshProUGUI textCoin;
-    public TextMeshProUGUI textRound;
+    [SerializeField]
+    private TextMeshProUGUI textCoin;
+    [SerializeField]
+    private TextMeshProUGUI textRound;
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine(UpdateValue());
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        UpdateCoin();
-        UpdateRound();
+        //UpdateCoin();
+        //UpdateRound();
     }
     void UpdateCoin()
     {
@@ -28,5 +31,15 @@ public class UIManager : MonoBehaviour
     {
         int round = GameManager.instance.GetRound();
         textRound.text = round.ToString();
+    }
+    IEnumerator UpdateValue() 
+    {
+        while(true) 
+        {
+            yield return new WaitForSeconds(0.5f);
+            UpdateCoin();
+            UpdateRound();
+        }
+
     }
 }

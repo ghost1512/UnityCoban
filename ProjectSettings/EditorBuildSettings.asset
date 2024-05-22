@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/MyGame/Home.unity
+    guid: edc8b73572ed99a43a21d18e173ecf72
+  - enabled: 1
+    path: Assets/MyGame/Gara.unity
+    guid: 9b8bfb5f52512c149a0b2a955b6b4f60
+  - enabled: 1
+    path: Assets/MyGame/Store.unity
+    guid: e1fe1eaac48b62641b568f1fa87d5ea1
+  - enabled: 1
+    path: Assets/MyGame/Lesson8.unity
+    guid: 71f1c904afeaa5141850aaa56e10b0f5
   m_configObjects: {}
